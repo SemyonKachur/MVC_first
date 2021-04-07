@@ -15,11 +15,17 @@ namespace Pinball_MVC
             _scaledSize = Screen.width * _scaler;
             _spriteScale = _scaledSize / SpriteRectWidth;
         }
-         public Scaler(float SpriteRectWidth, float offset)
+        public Scaler(float SpriteRectWidth, float scaler, float ballScreenScaleSize)
+        {
+            _scaledSize = Screen.width * scaler;
+            _spriteScale = _scaledSize / SpriteRectWidth - (Screen.width * ballScreenScaleSize);
+        }
+        public Scaler(float SpriteRectWidth, float offset)
         {
             _scaledSize = Screen.width * _scaler;
             _spriteScale = (_scaledSize / SpriteRectWidth) - (Screen.width * _offset);
         }
+
 
     }
 }

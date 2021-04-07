@@ -11,11 +11,13 @@ namespace Pinball_MVC
         [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField, Range(0, 1000)] private float _speed;
         [SerializeField] private Vector2 _position;
+        [SerializeField] float _ballScreenScaleSize;
 
         public Color Color => _color;
         public float Speed => _speed;
         public Vector2 Position => _position;
         public CircleCollider2D Collider => _collider;
         public Rigidbody2D Rigidbody => _rigidbody;
+        public float BallScreenScaleSize => _ballScreenScaleSize;
     }
 }

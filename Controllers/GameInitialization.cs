@@ -21,6 +21,8 @@ namespace Pinball_MVC
             var centerFactory = new CenterFactory(data.Center);
             var centerInitialization = new CenterInitialization(centerFactory, centerFactory._centerData.Position);
 
+            var startingBallFactory = new StartingBallFactory(data.Ball);
+            var startingBallInitialization = new StartingBallInitialization(startingBallFactory, playerInitialization.GetPlayer(),startingBallFactory._ballData.Position);
 
             controllers.Add(inputInitialization);
             controllers.Add(playerInitialization);
@@ -29,6 +31,7 @@ namespace Pinball_MVC
             controllers.Add(centerInitialization);
             controllers.Add(new InputController(inputInitialization.GetInput()));
             controllers.Add(new MoveController(inputInitialization.GetInput(), playerInitialization.GetPlayer(), data.Player));
+            controllers.Add(new StartingBallController(playerInitialization.GetPlayer(), startingBallInitialization.GetBall()));
             controllers.Add(new CameraController());
             //controllers.Add(new EndGameController(enemyInitialization.GetEnemies(), playerInitialization.GetPlayer().gameObject.GetInstanceID()));
             //controllers.Add(new EnemyMoveController(enemyInitialization.GetMoveEnemies(), playerInitialization.GetPlayer()));

@@ -10,11 +10,13 @@ namespace Pinball_MVC
         [SerializeField] private string _backgroundDataPath;
         [SerializeField] private string _framesDataPath;
         [SerializeField] private string _centerDataPath;
+        [SerializeField] private string _startingBallDataPath;
         //[SerializeField] private string _enemyDataPath;
         private PlayerData _player;
         private BackgroundData _background;
         private FramesData _frames;
         private CenterData _center;
+        private BallData _ball;
         //private EnemyData _enemy;
 
         public PlayerData Player
@@ -26,6 +28,17 @@ namespace Pinball_MVC
                     _player = Load<PlayerData>("SO/" + _playerDataPath);
                 }
                 return _player;
+            }
+        }
+        public BallData Ball
+        {
+            get
+            {
+                if (_ball == null)
+                {
+                    _ball = Load<BallData>("SO/" + _startingBallDataPath);
+                }
+                return _ball;
             }
         }
 
