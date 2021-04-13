@@ -84,7 +84,7 @@ namespace Pinball_MVC
             {
                 if (_enemy == null)
                 {
-                    _enemy = Load<EnemyData>("Data/" + _enemyDataPath);
+                    _enemy = Load<EnemyData>("SO/" + _enemyDataPath);
                 }
 
                 return _enemy;

@@ -22,10 +22,10 @@ namespace Pinball_MVC
             var centerInitialization = new CenterInitialization(centerFactory, centerFactory._centerData.Position);
 
             var startingBallFactory = new StartingBallFactory(data.Ball);
-            var startingBallInitialization = new StartingBallInitialization(startingBallFactory, playerInitialization.GetPlayer(),startingBallFactory._ballData.Position);
+            var startingBallInitialization = new StartingBallInitialization(startingBallFactory);
 
             var enemyFactory = new EnemyFactory(data.Enemy);
-            var enemyInitializatoin = new EnemyInitialization(enemyFactory);
+            CreateEnemies(enemyFactory,5);
 
             controllers.Add(inputInitialization);
             controllers.Add(playerInitialization);
@@ -39,7 +39,14 @@ namespace Pinball_MVC
             //controllers.Add(new EndGameController(enemyInitialization.GetEnemies(), playerInitialization.GetPlayer().gameObject.GetInstanceID()));
             //controllers.Add(new EnemyMoveController(enemyInitialization.GetMoveEnemies(), playerInitialization.GetPlayer()));
             //controllers.Add(enemyInitialization);
+        }
 
+        private void CreateEnemies(EnemyFactory enemy, int number)
+        {
+            for(int i = 0; i < number; i++)
+            {
+                var enemyInitializatoin = new EnemyInitialization(enemy);
+            }
         }
     }
 }

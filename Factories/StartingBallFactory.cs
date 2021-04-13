@@ -13,7 +13,7 @@ namespace Pinball_MVC
 
         public Transform CreateStartingBall()
         {
-            return new GameObject("StartingBall").transform;
+            return new GameObject("Ball").transform;
         }
     }
 }

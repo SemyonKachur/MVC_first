@@ -53,6 +53,7 @@ namespace Pinball_MVC
                 rb.simulated = true;
                 rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
                 rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+
                 rb.AddForce(ball.transform.up * ballspeed, ForceMode2D.Impulse);
 
                 _isGameStarted = false;

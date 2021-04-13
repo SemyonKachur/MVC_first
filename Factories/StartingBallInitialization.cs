@@ -6,16 +6,14 @@ namespace Pinball_MVC {
     {
         private BallData _startingBallData;
         private StartingBallFactory _startingBallFactory;
-        private Transform _player;
         private Transform _startingBall;
         private float _scaler = 0.1f;
         private float _ballScreenScaleSize;
 
-        public StartingBallInitialization(StartingBallFactory ballFactory, Transform player, Vector2 ballPosition)
+        public StartingBallInitialization(StartingBallFactory ballFactory)
         {
             _startingBallFactory = ballFactory;
             _ballScreenScaleSize = _startingBallFactory._ballData.BallScreenScaleSize;
-            _player = player;
             _startingBall = _startingBallFactory.CreateStartingBall();
             _startingBall.gameObject.tag = "Ball";
             _startingBall.gameObject.AddComponent<SpriteRenderer>().sprite = _startingBallFactory._ballData.Sprite;

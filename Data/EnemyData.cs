@@ -9,10 +9,11 @@ namespace Pinball_MVC
         [SerializeField] Color _color;
         [SerializeField] private Vector2 _position;
         [SerializeField] private BoxCollider2D _collider;
-
+        [SerializeField] float _enemyScreenScaleSize;
         public Color Color => _color;
         public Vector2 Position => _position;
         public Sprite Sprite => _sprite;
         public BoxCollider2D Collider => _collider;
+        public float EnemyScreenScaleSize => _enemyScreenScaleSize;
     }
 }
