@@ -17,6 +17,7 @@ namespace Pinball_MVC
             _center.gameObject.AddComponent<SpriteRenderer>().sprite = _centerFactory._centerData.Sprite;
             _center.gameObject.GetComponent<SpriteRenderer>().color = _centerFactory._centerData.Color;
             _center.gameObject.AddComponent<CircleCollider2D>().sharedMaterial = _centerFactory._centerData.Collider.sharedMaterial;
+            _center.gameObject.GetComponent<CircleCollider2D>().isTrigger = true;
 
             Scaler();
         }

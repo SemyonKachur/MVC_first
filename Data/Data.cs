@@ -11,13 +11,13 @@ namespace Pinball_MVC
         [SerializeField] private string _framesDataPath;
         [SerializeField] private string _centerDataPath;
         [SerializeField] private string _startingBallDataPath;
-        //[SerializeField] private string _enemyDataPath;
+        [SerializeField] private string _enemyDataPath;
         private PlayerData _player;
         private BackgroundData _background;
         private FramesData _frames;
         private CenterData _center;
         private BallData _ball;
-        //private EnemyData _enemy;
+        private EnemyData _enemy;
 
         public PlayerData Player
         {
@@ -78,18 +78,18 @@ namespace Pinball_MVC
             }
         }
 
-        //public EnemyData Enemy
-        //{
-        //    get
-        //    {
-        //        if (_enemy == null)
-        //        {
-        //            _enemy = Load<EnemyData>("Data/" + _enemyDataPath);
-        //        }
+        public EnemyData Enemy
+        {
+            get
+            {
+                if (_enemy == null)
+                {
+                    _enemy = Load<EnemyData>("Data/" + _enemyDataPath);
+                }
 
-        //        return _enemy;
-        //    }
-        //}
+                return _enemy;
+            }
+        }
         private T Load<T>(string resourcesPath) where T : Object =>
             Resources.Load<T>(Path.ChangeExtension(resourcesPath, null));
 

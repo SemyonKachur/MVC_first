@@ -5,7 +5,6 @@ namespace Pinball_MVC
     internal sealed class PlayerInitialization : IInitialization
     {
         private readonly PlayerFactory _playerFactory;
-        private PlayerData _playerData;
         private Transform _player;
 
         public PlayerInitialization(PlayerFactory playerFactory, Vector2 positionPlayer)
@@ -15,8 +14,6 @@ namespace Pinball_MVC
             _player.position = positionPlayer;
             _player.gameObject.AddComponent<SpriteRenderer>().sprite = _playerFactory._playerData.Sprite;
             _player.gameObject.GetComponent<SpriteRenderer>().color = _playerFactory._playerData.Color;
-            _player.gameObject.AddComponent<Rigidbody2D>().simulated = _playerFactory._playerData.Rigidbody.simulated;
-            _player.gameObject.GetComponent<Rigidbody2D>().constraints = _playerFactory._playerData.Rigidbody.constraints;
 
             _player.gameObject.AddComponent<PolygonCollider2D>();
             _player.gameObject.GetComponent<PolygonCollider2D>().points = _playerFactory._playerData.Collider.points;

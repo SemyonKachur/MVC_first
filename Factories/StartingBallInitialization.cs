@@ -17,13 +17,13 @@ namespace Pinball_MVC {
             _ballScreenScaleSize = _startingBallFactory._ballData.BallScreenScaleSize;
             _player = player;
             _startingBall = _startingBallFactory.CreateStartingBall();
+            _startingBall.gameObject.tag = "Ball";
             _startingBall.gameObject.AddComponent<SpriteRenderer>().sprite = _startingBallFactory._ballData.Sprite;
             _startingBall.gameObject.GetComponent<SpriteRenderer>().color = _startingBallFactory._ballData.Color;
             _startingBall.gameObject.AddComponent<CircleCollider2D>().sharedMaterial = _startingBallFactory._ballData.Collider.sharedMaterial;
             _startingBall.gameObject.AddComponent<Rigidbody2D>().sharedMaterial = _startingBallFactory._ballData.Rigidbody.sharedMaterial;
             _startingBall.gameObject.GetComponent<Rigidbody2D>().simulated = false;
-            //_player.transform.localRotation
-
+            
             Scaler();
         }
         private void Scaler()

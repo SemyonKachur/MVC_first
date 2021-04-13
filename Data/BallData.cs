@@ -9,7 +9,7 @@ namespace Pinball_MVC
         [SerializeField] Color _color;
         [SerializeField] private CircleCollider2D _collider;
         [SerializeField] private Rigidbody2D _rigidbody;
-        [SerializeField, Range(0, 1000)] private float _speed;
+        [SerializeField, Range(0, 2000)] private float _speed;
         [SerializeField] private Vector2 _position;
         [SerializeField] float _ballScreenScaleSize;
 

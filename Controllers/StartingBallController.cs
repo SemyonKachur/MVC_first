@@ -8,8 +8,6 @@ namespace Pinball_MVC
         private readonly Transform _player;
         private readonly Transform _startingBall;
         private float _scaler = 5.625f;
-        private float _magnitudeToBall;
-        private IUserInputProxy _horizontalInputProxy;
 
         public StartingBallController(Transform player, Transform startingball)
         {

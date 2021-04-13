@@ -6,6 +6,7 @@ namespace Pinball_MVC
     {
         private IUserInputProxy _pcInputHorizontal;
         private IUserInputProxy _pcInputVertical;
+        private IUserInputButton _pcStartButton;
 
         public InputInitialization()
         {
@@ -15,6 +16,7 @@ namespace Pinball_MVC
             }
             _pcInputHorizontal = new PCInputHorizontal();
             _pcInputVertical = new PCInputVertical();
+            _pcStartButton = new PCInputButtons();
         }
 
         public void Initialization()
@@ -25,6 +27,11 @@ namespace Pinball_MVC
         {
             (IUserInputProxy inputHorizontal, IUserInputProxy inputVertical) result = (_pcInputHorizontal, _pcInputVertical);
             return result;
+        }
+
+        public IUserInputButton GetStartButton()
+        {
+           return _pcStartButton; 
         }
     }
 }
