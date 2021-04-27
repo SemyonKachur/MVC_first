@@ -12,12 +12,14 @@ namespace Pinball_MVC
         [SerializeField] private string _centerDataPath;
         [SerializeField] private string _startingBallDataPath;
         [SerializeField] private string _enemyDataPath;
+        [SerializeField] private string _counterDataPath;
         private PlayerData _player;
         private BackgroundData _background;
         private FramesData _frames;
         private CenterData _center;
         private BallData _ball;
         private EnemyData _enemy;
+        private CounterData _counter;
 
         public PlayerData Player
         {
@@ -88,6 +90,19 @@ namespace Pinball_MVC
                 }
 
                 return _enemy;
+            }
+        }
+
+        public CounterData Counter
+        {
+            get
+            {
+                if (_counter == null)
+                {
+                    _counter = Load<CounterData>("SO/" + _counterDataPath);
+                }
+
+                return _counter;
             }
         }
         private T Load<T>(string resourcesPath) where T : Object =>

@@ -5,8 +5,7 @@ namespace Pinball_MVC
 
     public sealed class CenterInitialization : IInitialization
     {
-        private readonly CenterFactory _centerFactory;
-        private readonly CenterData _centerData;
+        public readonly CenterFactory _centerFactory;
         private Transform _center;
         private float _offset = 0.4f;
 

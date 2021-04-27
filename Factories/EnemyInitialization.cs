@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Pinball_MVC
 {
-    public sealed class EnemyInitialization
+    public sealed class EnemyInitialization : IInitialization
     {
         readonly EnemyFactory _enemyFactory;
         private Transform _enemy;
@@ -19,6 +19,11 @@ namespace Pinball_MVC
             _enemy.gameObject.AddComponent<BoxCollider2D>().sharedMaterial = _enemyFactory._enemyData.Collider.sharedMaterial;
             _enemy.transform.localScale = new Vector2(Screen.width * _enemyScreenScaleSize, Screen.width * _enemyScreenScaleSize);
             _enemy.transform.position = new Vector2(UnityEngine.Random.Range(-Screen.width/2, Screen.width/2), UnityEngine.Random.Range(-Screen.height/2, Screen.height/2));           
+        }
+
+        public void Initialization()
+        {
+
         }
 
     }

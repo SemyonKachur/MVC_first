@@ -4,6 +4,9 @@ namespace Pinball_MVC
 {
     internal sealed class GameInitialization
     {
+        private readonly CounterInitialization _counterInitialization;
+
+        private float _scaler = 5.625f;
         public GameInitialization(Controllers controllers, Data data)
         {
             var cameraController = new CameraController();
@@ -34,11 +37,17 @@ namespace Pinball_MVC
             controllers.Add(centerInitialization);
             controllers.Add(new InputController(inputInitialization.GetInput(),inputInitialization.GetStartButton()));
             controllers.Add(new MoveController(inputInitialization.GetInput(), playerInitialization.GetPlayer(), data.Player, data.Ball, inputInitialization.GetStartButton()));
-            controllers.Add(new StartingBallController(playerInitialization.GetPlayer(), startingBallInitialization.GetBall()));
+
+            var ball = startingBallInitialization.GetBall().gameObject.AddComponent<BallController>();
+            ball.transform.position = new Vector2(0, Screen.width / _scaler);
+            ball.transform.parent = playerInitialization.GetPlayer();
             controllers.Add(new CameraController());
             //controllers.Add(new EndGameController(enemyInitialization.GetEnemies(), playerInitialization.GetPlayer().gameObject.GetInstanceID()));
             //controllers.Add(new EnemyMoveController(enemyInitialization.GetMoveEnemies(), playerInitialization.GetPlayer()));
             //controllers.Add(enemyInitialization);
+
+            var counterFactory = new CounterFactory(data.Counter);
+            _counterInitialization = new CounterInitialization(counterFactory,ball);
         }
 
         private void CreateEnemies(EnemyFactory enemy, int number)
