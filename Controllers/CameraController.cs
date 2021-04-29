@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+namespace Pinball_MVC 
 {
-    // Start is called before the first frame update
-    void Start()
+    internal class CameraController : IInitialization
     {
-        
-    }
+        public readonly Camera _camera;
+        public CameraController()
+        {
+            _camera = Camera.main;
+            _camera.orthographicSize = Screen.height / 2;
+        }
+        public void Initialization()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
     }
 }

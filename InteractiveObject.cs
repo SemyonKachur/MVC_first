@@ -17,7 +17,10 @@ namespace Pinball_MVC
             Interaction();
             //Destroy(gameObject);
         }
+        public void Initialization()
+        {
 
+        }
         protected abstract void Interaction();
 
         private void Start()
