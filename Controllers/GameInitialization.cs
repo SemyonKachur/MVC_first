@@ -30,6 +30,12 @@ namespace Pinball_MVC
             var enemyFactory = new EnemyFactory(data.Enemy);
             CreateEnemies(enemyFactory,5);
 
+            var ball = startingBallInitialization.GetBall().gameObject.AddComponent<BallController>();
+            ball.GetComponent<BallController>().SetPosition(playerInitialization.GetPlayer(), ball.transform);
+
+            var counterFactory = new CounterFactory(data.Counter);
+            _counterInitialization = new CounterInitialization(counterFactory, ball);
+
             controllers.Add(inputInitialization);
             controllers.Add(playerInitialization);
             controllers.Add(backgroundInitialization);
@@ -37,17 +43,11 @@ namespace Pinball_MVC
             controllers.Add(centerInitialization);
             controllers.Add(new InputController(inputInitialization.GetInput(),inputInitialization.GetStartButton()));
             controllers.Add(new MoveController(inputInitialization.GetInput(), playerInitialization.GetPlayer(), data.Player, data.Ball, inputInitialization.GetStartButton()));
-
-            var ball = startingBallInitialization.GetBall().gameObject.AddComponent<BallController>();
-            ball.transform.position = new Vector2(0, Screen.width / _scaler);
-            ball.transform.parent = playerInitialization.GetPlayer();
             controllers.Add(new CameraController());
+            controllers.Add(ball);
             //controllers.Add(new EndGameController(enemyInitialization.GetEnemies(), playerInitialization.GetPlayer().gameObject.GetInstanceID()));
             //controllers.Add(new EnemyMoveController(enemyInitialization.GetMoveEnemies(), playerInitialization.GetPlayer()));
-            //controllers.Add(enemyInitialization);
-
-            var counterFactory = new CounterFactory(data.Counter);
-            _counterInitialization = new CounterInitialization(counterFactory,ball);
+            //controllers.Add(enemyInitialization);          
         }
 
         private void CreateEnemies(EnemyFactory enemy, int number)
