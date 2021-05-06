@@ -4,6 +4,7 @@ namespace Pinball_MVC
 {
     internal sealed class GameInitialization
     {
+        private BonusInitialization bonusInitialization;
         public GameInitialization(Controllers controllers, Data data)
         {
             var cameraController = new CameraController();
@@ -37,11 +38,15 @@ namespace Pinball_MVC
                 void CreateBonus(int bonusType)
                 {
                     var bonusFactory = new BonusFactory(data.BonusData);
-                    var bonusInitialization = new BonusInitialization(bonusFactory, bonusType);
+                    bonusInitialization = new BonusInitialization(bonusFactory, bonusType);
                 }
 
             var bounceCounterFactory = new BounceCounterFactory(data.BounceCounter);
             var bounceCounterInitialization = new BounceCounterInitialization(bounceCounterFactory, ball);
+
+            var gameOverFactory = new GameOverFactory(data.GameOverData);
+            var gameOverInitialization = new GameOverInitialization(gameOverFactory, ball, bounceCounterInitialization.GetBounceCounter(), 
+                enemyCounterInitialization.GetEnemyCounter(), playerInitialization.GetPlayer(), bounceCounterInitialization, enemyCounterInitialization);
 
             
             controllers.Add(inputInitialization);
@@ -55,7 +60,8 @@ namespace Pinball_MVC
             controllers.Add(ball);
             controllers.Add(enemyCounterInitialization);
             controllers.Add(bounceCounterInitialization);
-            //controllers.Add(new EndGameController(enemyInitialization.GetEnemies(), playerInitialization.GetPlayer().gameObject.GetInstanceID()));
+            controllers.Add(bonusInitialization);
+            controllers.Add(gameOverInitialization);
         }
 
         

@@ -14,6 +14,7 @@ namespace Pinball_MVC
         private float _fontSizeScaler = 15.0f;
         public BallController _ballController;
         public event Action<int> BonusInvoke = delegate (int randomBonusNumber) { };
+        public event Action<string, bool> Victory = delegate (string victoryText, bool isGameOverBool) { };
 
         public EnemyCounterInitialization(EnemyCounterFactory counterFactory,BallController ballController)
         {
@@ -50,6 +51,15 @@ namespace Pinball_MVC
             {
                 BonusInvoke.Invoke(Random.Range(0,3));
             }
+            if (counter == 0)
+            {
+                Victory.Invoke("You WIN", true);
+            }
+        }
+
+        public GameObject GetEnemyCounter()
+        {
+            return _counterGameObject;
         }
 
         public void Initialization()

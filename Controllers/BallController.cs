@@ -9,9 +9,9 @@ namespace Pinball_MVC
         private  Transform _startingBall;
         private float _scaler = 5.625f;
 
-
         public event Action<int> EnemyCountChange = delegate (int count) { };
         public event Action<int> BounceCountChange = delegate (int count) { };
+        public event Action<bool> IsGameOver = delegate (bool isGameOver) { };
 
         public void SetPosition(Transform player, Transform startingball)
         {
@@ -57,6 +57,12 @@ namespace Pinball_MVC
             {
                 BounceCountChange.Invoke(1);
             }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            _startingBall.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            IsGameOver.Invoke(true);
         }
     }
 }

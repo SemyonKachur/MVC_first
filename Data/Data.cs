@@ -14,7 +14,9 @@ namespace Pinball_MVC
         [SerializeField] private string _enemyDataPath;
         [SerializeField] private string _enemyCounterDataPath;
         [SerializeField] private string _bounceCounterDataPath;
-        [SerializeField] private string _BonusDataPath;
+        [SerializeField] private string _bonusDataPath;
+        [SerializeField] private string _gameOverDataPath;
+
 
         private PlayerData _player;
         private BackgroundData _background;
@@ -25,6 +27,7 @@ namespace Pinball_MVC
         private EnemyCounterData _enemyCounter;
         private BounceCounterData _bounceCounter;
         private BonusData _bonusData;
+        private GameOverData _gameOverData;
 
         public PlayerData Player
         {
@@ -130,14 +133,23 @@ namespace Pinball_MVC
             {
                 if (_bonusData == null)
                 {
-                    _bonusData = Load<BonusData>("SO/" + _BonusDataPath);
+                    _bonusData = Load<BonusData>("SO/" + _bonusDataPath);
                 }
                 return _bonusData;
             }
         }
 
-
-
+        public GameOverData GameOverData
+        {
+            get
+            {
+                if(_gameOverData == null)
+                {
+                    _gameOverData = Load<GameOverData>("SO/" + _gameOverDataPath);
+                }
+                return _gameOverData;
+            }
+        }
         private T Load<T>(string resourcesPath) where T : Object =>
             Resources.Load<T>(Path.ChangeExtension(resourcesPath, null));
 

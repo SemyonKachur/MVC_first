@@ -12,6 +12,8 @@ namespace Pinball_MVC
         private RectTransform _counterRectTransform;
         private float _fontSizeScaler = 15.0f;
         public BallController _ballController;
+        public event Action<bool> IsGameOver = delegate (bool isGameOver) { };
+
         public BounceCounterInitialization(BounceCounterFactory counterFactory, BallController ballController)
         {
             var canvas = GameObject.Find("Canvas");
@@ -40,6 +42,14 @@ namespace Pinball_MVC
             var counter = Convert.ToInt32(_counterText.text);
             counter -= count;
             _counterText.text = counter.ToString();
+            if (counter <= 0)
+            {
+                IsGameOver.Invoke(true);
+            }
+        }
+        public GameObject GetBounceCounter()
+        {
+            return _counterGameObject;
         }
         public void Initialization()
         {
