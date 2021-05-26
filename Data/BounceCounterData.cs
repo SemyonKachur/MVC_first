@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Pinball_MVC
 {
-    [CreateAssetMenu(fileName = "Counter", menuName = "Data/UI/Counter")]
-    public sealed class CounterData : ScriptableObject
+    [CreateAssetMenu(fileName = "BounceCounter", menuName = "Data/UI/Bounce Counter")]
+    public sealed class BounceCounterData : ScriptableObject 
     {
         private Text _counter;
         [SerializeField] Color _color;
@@ -16,6 +16,5 @@ namespace Pinball_MVC
         public Color Color => _color;
         public Font Font => _font;
         public Vector2 Position => _position;
-        
     }
 }

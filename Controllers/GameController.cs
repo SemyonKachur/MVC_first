@@ -16,7 +16,7 @@ namespace Pinball_MVC
             _controllers = new Controllers();
             _interactiveObject = new ListInteractableObject();
             _gameInitialization = new GameInitialization(_controllers,_data);
-            _count = _data.Counter.Count;
+            _count = _data.EnemyCounter.Count;
         }
 
         private void Update()

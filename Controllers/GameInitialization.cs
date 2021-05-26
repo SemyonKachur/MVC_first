@@ -4,9 +4,7 @@ namespace Pinball_MVC
 {
     internal sealed class GameInitialization
     {
-        private readonly CounterInitialization _counterInitialization;
-
-        private float _scaler = 5.625f;
+        private BonusInitialization bonusInitialization;
         public GameInitialization(Controllers controllers, Data data)
         {
             var cameraController = new CameraController();
@@ -28,27 +26,45 @@ namespace Pinball_MVC
             var startingBallInitialization = new StartingBallInitialization(startingBallFactory);
 
             var enemyFactory = new EnemyFactory(data.Enemy);
-            CreateEnemies(enemyFactory,5);
+            CreateEnemies(enemyFactory, 5);
 
             var ball = startingBallInitialization.GetBall().gameObject.AddComponent<BallController>();
             ball.GetComponent<BallController>().SetPosition(playerInitialization.GetPlayer(), ball.transform);
 
-            var counterFactory = new CounterFactory(data.Counter);
-            _counterInitialization = new CounterInitialization(counterFactory, ball);
+            var enemyCounterFactory = new EnemyCounterFactory(data.EnemyCounter);
+            var enemyCounterInitialization = new EnemyCounterInitialization(enemyCounterFactory, ball);
+            enemyCounterInitialization.BonusInvoke += CreateBonus;
 
+                void CreateBonus(int bonusType)
+                {
+                    var bonusFactory = new BonusFactory(data.BonusData);
+                    bonusInitialization = new BonusInitialization(bonusFactory, bonusType);
+                }
+
+            var bounceCounterFactory = new BounceCounterFactory(data.BounceCounter);
+            var bounceCounterInitialization = new BounceCounterInitialization(bounceCounterFactory, ball);
+
+            var gameOverFactory = new GameOverFactory(data.GameOverData);
+            var gameOverInitialization = new GameOverInitialization(gameOverFactory, ball, bounceCounterInitialization.GetBounceCounter(), 
+                enemyCounterInitialization.GetEnemyCounter(), playerInitialization.GetPlayer(), bounceCounterInitialization, enemyCounterInitialization);
+
+            
             controllers.Add(inputInitialization);
             controllers.Add(playerInitialization);
             controllers.Add(backgroundInitialization);
             controllers.Add(framesInitialization);
             controllers.Add(centerInitialization);
-            controllers.Add(new InputController(inputInitialization.GetInput(),inputInitialization.GetStartButton()));
+            controllers.Add(new InputController(inputInitialization.GetInput(), inputInitialization.GetStartButton()));
             controllers.Add(new MoveController(inputInitialization.GetInput(), playerInitialization.GetPlayer(), data.Player, data.Ball, inputInitialization.GetStartButton()));
             controllers.Add(new CameraController());
             controllers.Add(ball);
-            //controllers.Add(new EndGameController(enemyInitialization.GetEnemies(), playerInitialization.GetPlayer().gameObject.GetInstanceID()));
-            //controllers.Add(new EnemyMoveController(enemyInitialization.GetMoveEnemies(), playerInitialization.GetPlayer()));
-            //controllers.Add(enemyInitialization);          
+            controllers.Add(enemyCounterInitialization);
+            controllers.Add(bounceCounterInitialization);
+            controllers.Add(bonusInitialization);
+            controllers.Add(gameOverInitialization);
         }
+
+        
 
         private void CreateEnemies(EnemyFactory enemy, int number)
         {

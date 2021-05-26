@@ -37,8 +37,8 @@ namespace Pinball_MVC
 
         public Transform GetPlayer()
         {
-            return _player;
+            return _player.transform;
         }
-
+        
     }
 }

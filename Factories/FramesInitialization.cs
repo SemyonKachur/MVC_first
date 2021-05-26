@@ -24,6 +24,7 @@ namespace Pinball_MVC
         private void TopFrameCreate()
         {
             _topFrame = _framesFactory.CreateFrame("TopFrame");
+            _topFrame.gameObject.tag = "Bounce";
             _topFrame.position = new Vector2(0, Screen.height / 2);
             _topFrame.gameObject.AddComponent<SpriteRenderer>().sprite = _framesFactory._framesData.Sprite;
             _topFrame.gameObject.GetComponent<SpriteRenderer>().color = _framesFactory._framesData.Color;
@@ -33,6 +34,7 @@ namespace Pinball_MVC
         private void RightFrameCreate()
         {
             _rightFrame = _framesFactory.CreateFrame("RightFrame");
+            _rightFrame.gameObject.tag = "Bounce";
             _rightFrame.position = new Vector2(Screen.width/2, 0);
             _rightFrame.gameObject.AddComponent<SpriteRenderer>().sprite = _framesFactory._framesData.Sprite;
             _rightFrame.gameObject.GetComponent<SpriteRenderer>().color = _framesFactory._framesData.Color;
@@ -42,6 +44,7 @@ namespace Pinball_MVC
         private void DownFrameCreate()
         {
             _downFrame = _framesFactory.CreateFrame("DownFrame");
+            _downFrame.gameObject.tag = "Bounce";
             _downFrame.position = new Vector2(0, -Screen.height/2);
             _downFrame.gameObject.AddComponent<SpriteRenderer>().sprite = _framesFactory._framesData.Sprite;
             _downFrame.gameObject.GetComponent<SpriteRenderer>().color = _framesFactory._framesData.Color;
@@ -51,6 +54,7 @@ namespace Pinball_MVC
         private void LeftFrameCreate()
         {
             _leftFrame = _framesFactory.CreateFrame("LeftFrame");
+            _leftFrame.gameObject.tag = "Bounce";
             _leftFrame.position = new Vector2(-Screen.width/2, 0);
             _leftFrame.gameObject.AddComponent<SpriteRenderer>().sprite = _framesFactory._framesData.Sprite;
             _leftFrame.gameObject.GetComponent<SpriteRenderer>().color = _framesFactory._framesData.Color;
